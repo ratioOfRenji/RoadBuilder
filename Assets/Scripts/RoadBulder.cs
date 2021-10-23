@@ -13,10 +13,11 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
     [SerializeField] public int scoreIncrease = 20;
     [SerializeField] private RayStartPoint rayStartPoint;
 
+    private House _house;
     private HouseTrigger _trigger;
     private bool IsCanSpawn = false;
 
-    public bool IsDefaultCollider = true;
+    public bool IsDefaultCollider = false;
     public UnityAction<int> OnRoadBuild;
 
     private void Awake()
@@ -26,7 +27,7 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
         SetUnseenObj();
     }
     void Start()
-    {
+    {    
         Rotate();
     }
     private void Update()
@@ -39,7 +40,7 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
             if (!IsCanSpawn)
             {
                 AnchorObj();
-                SetNewPointPosition();              
+                SetNewPointPosition();
             }
         }
     }
@@ -47,12 +48,12 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
     public void Rotate()
     {
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        Tween tween = transform.DORotate(new Vector3(0, 360, 0), 2f, RotateMode.LocalAxisAdd).
+        Tween tween = transform.DORotate(new Vector3(0, 360, 0), 3.5f, RotateMode.LocalAxisAdd).
             SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
     }
     public void SetUnseenObj()
     {
-        GameObject carChild = GetRoadCarChild();
+        GameObject carChild = GetCar();
         carChild.gameObject.SetActive(false);
 
     }
@@ -69,26 +70,26 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
         GameObject roadChild = _currentRoad.GetChild(1).GetChild(0).gameObject;
         roadChild.gameObject.SetActive(false);
 
-        roadChild = GetRoadChild();
+        roadChild = GetRoad();
         roadChild.gameObject.SetActive(true);
 
         roadChild = _currentRoad.GetChild(1).GetChild(randomChild).gameObject;
         roadChild.gameObject.SetActive(true);
 
-        GameObject carChild = GetRoadCarChild();
+        GameObject carChild = GetCar();
         carChild.gameObject.SetActive(true);
 
         carChild = _currentRoad.GetChild(0).GetChild(randomChild).gameObject;
         carChild.gameObject.SetActive(true);
     }
 
-    private GameObject GetRoadCarChild() => _currentRoad.GetChild(0).gameObject;
-    private GameObject GetRoadChild() => _currentRoad.GetChild(1).gameObject;
-    private GameObject GetBusChild() => _currentRoad.GetChild(2).GetChild(0).gameObject;
-    private GameObject GetFlowerChild() => _currentRoad.GetChild(3).GetChild(0).gameObject;
-    private GameObject GetLampChild() => _currentRoad.GetChild(4).GetChild(0).gameObject;
-    private GameObject GetTreeChild() => _currentRoad.GetChild(5).GetChild(0).gameObject;
-
+    private GameObject GetCar() => _currentRoad.GetChild(0).gameObject;
+    private GameObject GetRoad() => _currentRoad.GetChild(1).gameObject;
+    private GameObject GetBusStation() => _currentRoad.GetChild(2).GetChild(0).gameObject;
+    private GameObject GetFlower() => _currentRoad.GetChild(3).GetChild(0).gameObject;
+    private GameObject GetLamp() => _currentRoad.GetChild(4).GetChild(0).gameObject;
+    private GameObject GetTree() => _currentRoad.GetChild(5).GetChild(0).gameObject;
+   
     private void AnchorObj()
     {
         _currentRoad.SetParent(_ground, true);
@@ -124,13 +125,13 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
     }
     private void SetEnvironment()
     {
-        GameObject busChild = GetBusChild();
-        GameObject flowerChild = GetFlowerChild();
-        GameObject lampChild = GetLampChild();
-        GameObject treeChild = GetTreeChild();
+        GameObject busChild = GetBusStation();
+        GameObject flowerChild = GetFlower();
+        GameObject lampChild = GetLamp();
+        GameObject treeChild = GetTree();
 
-        Collider[] hitBusColliders = Physics.OverlapSphere(busChild.transform.position, transform.localScale.x/2f);
-        RayCast.DrawPlus(busChild.transform.position, transform.localScale/2f, Color.red, 1000);
+        Collider[] hitBusColliders = Physics.OverlapSphere(busChild.transform.position, transform.localScale.x / 2f);
+        RayCast.DrawPlus(busChild.transform.position, transform.localScale / 2f, Color.red, 1000);
         for (int i = 0; i < hitBusColliders.Length; i++)
         {
             Debug.Log(hitBusColliders[i].name);
@@ -185,7 +186,7 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
     }
 
     private void CheckObstacle()
-    {
+    {       
         int score = 0;
         var position = _currentRoad.position;
 
@@ -218,6 +219,8 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
 
             if (collider?.tag == "DefaultCollider")
             {
+                collider?.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+              //  collider?.gameObject.SetActive(false);              
                 score += scoreDefault;
                 Debug.Log("DefaultCollider DefaultCollider");
             }

@@ -50,4 +50,5 @@ MonoBehaviour:
   scoreDefault: 10
   scoreIncrease: 20
   rayStartPoint: {fileID: 7966947145849614854, guid: 56887269d6d59474db0cf72324ac56f6, type: 3}
+  _house: {fileID: 0}
   IsDefaultCollider: 1
