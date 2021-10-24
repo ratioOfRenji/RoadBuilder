@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &978866026002642783
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577116935882509164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8923377837610695257, guid: 4820bcc0dccc66c44920c5b6ecefe553, type: 3}
 --- !u!1 &6955943032818408194
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +25,7 @@ GameObject:
   - component: {fileID: 1281358114911919920}
   m_Layer: 0
   m_Name: Rock_6
-  m_TagString: Build
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,8 +100,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockSix
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4820bcc0dccc66c44920c5b6ecefe553, type: 3}
+      propertyPath: m_TagString
+      value: Build
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4820bcc0dccc66c44920c5b6ecefe553, type: 3}
+--- !u!1 &577116935882509164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4820bcc0dccc66c44920c5b6ecefe553, type: 3}
+  m_PrefabInstance: {fileID: 343185179582314045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &236866034396811734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4820bcc0dccc66c44920c5b6ecefe553, type: 3}
