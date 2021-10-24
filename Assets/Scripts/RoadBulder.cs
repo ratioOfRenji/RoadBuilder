@@ -132,56 +132,45 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
 
         Collider[] hitBusColliders = Physics.OverlapSphere(busChild.transform.position, transform.localScale.x / 2f);
         RayCast.DrawPlus(busChild.transform.position, transform.localScale / 2f, Color.red, 1000);
+
         for (int i = 0; i < hitBusColliders.Length; i++)
         {
-            Debug.Log(hitBusColliders[i].name);
             if (hitBusColliders[i].tag == "Build")
-            {
-                Debug.Log("остановка");
                 busChild.gameObject.SetActive(false);
-
-            }
             else
                 busChild.gameObject.SetActive(true);
         }
 
-        Collider[] hitFlowerColliders = Physics.OverlapBox(flowerChild.transform.position, transform.localScale);
+        Collider[] hitFlowerColliders = Physics.OverlapSphere(flowerChild.transform.position, transform.localScale.x / 2f);
+
         for (int i = 0; i < hitFlowerColliders.Length; i++)
         {
-
-            if (hitFlowerColliders[i].tag == "Build")
-            {
-                flowerChild.gameObject.SetActive(false);
-                Debug.Log("цветочки");
-            }
+            if (hitFlowerColliders[i]?.tag == "Build")
+                flowerChild?.gameObject.SetActive(false);
             else
-                flowerChild.gameObject.SetActive(true);
+                flowerChild?.gameObject.SetActive(true);
         }
 
-        Collider[] hitLampColliders = Physics.OverlapBox(lampChild.transform.position, transform.localScale);
+        Collider[] hitLampColliders = Physics.OverlapSphere(lampChild.transform.position, transform.localScale.x / 2f);
+
         for (int i = 0; i < hitLampColliders.Length; i++)
         {
-            if (hitLampColliders[i].tag == "Build")
-            {
-                lampChild.gameObject.SetActive(false);
-                Debug.Log("лампочка");
-
-            }
+            if (hitLampColliders[i]?.tag == "Build")
+                lampChild?.gameObject.SetActive(true);
             else
-                lampChild.gameObject.SetActive(true);
+            {
+                lampChild?.gameObject.SetActive(false);
+            }
         }
 
-        Collider[] hitTreeColliders = Physics.OverlapBox(treeChild.transform.position, transform.localScale);
+        Collider[] hitTreeColliders = Physics.OverlapSphere(treeChild.transform.position, transform.localScale.x / 2f);
+
         for (int i = 0; i < hitTreeColliders.Length; i++)
         {
-            if (hitTreeColliders[i].tag == "Build")
-            {
-                treeChild.gameObject.SetActive(false);
-                Debug.Log("деревья");
-            }
+            if (hitTreeColliders[i]?.tag == "Build")
+                treeChild?.gameObject.SetActive(true);
             else
-                treeChild.gameObject.SetActive(true);
-
+                treeChild?.gameObject.SetActive(false);
         }
     }
 
@@ -197,37 +186,34 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
         Debug.DrawLine(rayStartPoint.transform.position + position, (transform.TransformDirection(Vector3.forward) * 3)
             + rayStartPoint.transform.position + position, Color.yellow, 1000);
 
-
         for (int i = 0; i < raycastHits.Length; i++)
         {
             RaycastHit hit = raycastHits[i];
             Collider collider = hit.collider;
 
             if (collider?.tag == "Build")
-            {
-                Debug.Log("Build Build");
+            {             
                 CheckTriggerLose();
                 return;
             }
             if (collider?.tag == "Finish")
             {
-                IsCanSpawn = true;
-                Debug.Log("Win");
                 CheckTriggerWin();
                 return;
             }
 
             if (collider?.tag == "DefaultCollider")
             {
-                collider?.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-              //  collider?.gameObject.SetActive(false);              
-                score += scoreDefault;
-                Debug.Log("DefaultCollider DefaultCollider");
+                SetVisibleSideWalk(collider);
+                DisableCollider(collider);
+                score += scoreDefault;             
             }
+
             if (collider?.tag == "HightPointCollider")
             {
-                score += scoreIncrease;
-                Debug.Log("HightPointCollider HightPointCollider");
+                SetVisibleSideWalk(collider);
+                DisableCollider(collider);
+                score += scoreIncrease;             
             }
         }
         if (score != 0)
@@ -235,6 +221,17 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
             TextScoreUI.Instance.AddText(score, _currentRoad.position);
             OnRoadBuild?.Invoke(score);
         }
+    }
+
+    private static void DisableCollider(Collider collider)
+    {
+        var defaultCollider = collider?.gameObject.GetComponent<Collider>();
+        defaultCollider.enabled = false;
+    }
+
+    private static void SetVisibleSideWalk(Collider collider)
+    {
+        collider?.gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
 
