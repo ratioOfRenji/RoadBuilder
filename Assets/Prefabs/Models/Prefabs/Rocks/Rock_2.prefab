@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &5590815545348717151
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860157910906316549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2733448660354597953, guid: 662804387eba96f47b27a3ebdce473e7, type: 3}
 --- !u!1 &7241479844326217377
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,9 +25,11 @@ GameObject:
   - component: {fileID: 8817423989074490477}
   - component: {fileID: 2657391290249424823}
   - component: {fileID: 551091620727054002}
+  - component: {fileID: 5538462140513973312}
+  - component: {fileID: 1768394578695021719}
   m_Layer: 0
   m_Name: Rock_2
-  m_TagString: Build
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,10 +58,10 @@ BoxCollider:
   m_GameObject: {fileID: 7241479844326217377}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 3}
-  m_Center: {x: -0.31, y: 0.23, z: 0.3}
+  m_Size: {x: 1.8, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!54 &551091620727054002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62,6 +78,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &5538462140513973312
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7241479844326217377}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.36
+  m_Center: {x: -0.85, y: 0, z: 1.4}
+--- !u!135 &1768394578695021719
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7241479844326217377}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.23
+  m_Center: {x: -1.4, y: 0, z: 0.8}
 --- !u!1001 &517505771749841492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,8 +159,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockTwo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 662804387eba96f47b27a3ebdce473e7, type: 3}
+      propertyPath: m_TagString
+      value: Build
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 662804387eba96f47b27a3ebdce473e7, type: 3}
+--- !u!1 &860157910906316549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 662804387eba96f47b27a3ebdce473e7, type: 3}
+  m_PrefabInstance: {fileID: 517505771749841492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &46220980181302719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 662804387eba96f47b27a3ebdce473e7, type: 3}
