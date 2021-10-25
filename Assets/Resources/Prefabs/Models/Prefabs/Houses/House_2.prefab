@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &2843121104795440673
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6613088071276672305}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.105, y: 0.5, z: 2.105}
-  m_Center: {x: 0.00017895829, y: 0.000269324, z: -0.00054836395}
 --- !u!1 &3996150231301395613
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +49,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1175709023969700093
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511483796237474725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.86, y: 0.5, z: 6.16}
+  m_Center: {x: 0.00017895829, y: 0.000269324, z: -0.00054836395}
+--- !u!65 &2843121104795440673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613088071276672305}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.21, y: 0.5, z: 2.105}
+  m_Center: {x: 0.00017895829, y: 0.000269324, z: -0.00054836395}
 --- !u!65 &2856077780107386766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -89,6 +102,10 @@ PrefabInstance:
     - target: {fileID: 2700900905194480522, guid: 189243efa38594546b11dda599a7113d, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3328256592429037872, guid: 189243efa38594546b11dda599a7113d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029
       objectReference: {fileID: 0}
     - target: {fileID: 5142945922179672615, guid: 189243efa38594546b11dda599a7113d, type: 3}
       propertyPath: m_RootOrder
@@ -152,7 +169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6831143610506630923, guid: 189243efa38594546b11dda599a7113d, type: 3}
       propertyPath: m_TagString
-      value: DefaultCollider
+      value: ScoreCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869678801262918047, guid: 189243efa38594546b11dda599a7113d, type: 3}
+      propertyPath: m_TagString
+      value: SideWalkCollider
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4678930809846783668, guid: 189243efa38594546b11dda599a7113d, type: 3}
@@ -165,6 +186,11 @@ GameObject:
 --- !u!4 &4779474150398674973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5142945922179672615, guid: 189243efa38594546b11dda599a7113d, type: 3}
+  m_PrefabInstance: {fileID: 363507871020540474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6511483796237474725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6869678801262918047, guid: 189243efa38594546b11dda599a7113d, type: 3}
   m_PrefabInstance: {fileID: 363507871020540474}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7631996377988224536

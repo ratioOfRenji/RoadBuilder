@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
 {
-    private const string DEFAULT_POINT_COLLIDER = "DefaultCollider";
-    private const string HIGHT_POINT_COLLIDER = "HightPointCollider";
+    private const string SCORE_COLLIDER = "ScoreCollider";
+    private const string SIDE_WALK_COLLIDER = "SideWalkCollider";
     private const string BUILD = "Build";
     private const string FINISH = "Finish";
 
@@ -58,8 +58,7 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
     public void SetUnseenObj()
     {
         GameObject carChild = GetCar();
-        carChild.gameObject.SetActive(false);
-
+        carChild.gameObject.SetActive(false);     
     }
 
     private void SetDefaultRoad()
@@ -73,6 +72,8 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
         int randomChild = Random.Range(0, 3);
         SetRoad(randomChild);
         SetCar(randomChild);
+        GameObject roadSideWalk = _currentRoad.GetChild(1).GetChild(0).GetChild(0).gameObject;
+        roadSideWalk.gameObject.SetActive(true);
     }
 
     private void SetCar(int randomChild)
@@ -215,7 +216,7 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
         for (int i = 0; i < raycastHits.Length; i++)
         {
             RaycastHit hit = raycastHits[i];
-            Collider collider = hit.collider;        
+            Collider collider = hit.collider;
 
             if (collider?.tag == BUILD)
             {
@@ -228,20 +229,18 @@ public class RoadBulder : ObjectSpawner, IRotator, IUnseen, IVisible
                 return;
             }
 
-            if (collider?.tag == DEFAULT_POINT_COLLIDER)
+            if (collider?.tag == SCORE_COLLIDER)
             {
-                SetVisibleSideWalk(collider);
                 DisableCollider(collider);
                 score += scoreDefault;
+                SetPointsVisible(score);
             }
 
-            if (collider?.tag == HIGHT_POINT_COLLIDER)
+            if (collider?.tag == SIDE_WALK_COLLIDER)
             {
                 SetVisibleSideWalk(collider);
                 DisableCollider(collider);
-                score += scoreIncrease;
             }
-            SetPointsVisible(score);
         }
     }
 
