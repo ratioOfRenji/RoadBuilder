@@ -32,17 +32,14 @@ public class ScoreCounter : MonoBehaviour
     }
     private void AddScorePoint(int score)
     {
-       if (_roadBuilder.IsDefaultCollider)
+        if (_roadBuilder.IsDefaultCollider)
         {
             _score += score;
             OnScoreChanged?.Invoke(_score);
             _scoreText += score;
             UpdateScore();
         }
-        if (!_roadBuilder.IsDefaultCollider)
-        {
-            _score += score;
-            OnScoreChanged?.Invoke(_score);
-        }
+        else
+            return;
     }
 }

@@ -9,7 +9,7 @@ public class FollowCamera : MonoBehaviour
     private Vector3 _cameraOffset;
     private void Awake()
     {
-        _cameraOffset = transform.position;
+        _cameraOffset = transform.position + new Vector3(0,0,-1)*2;
     }
  
     private void Update()
