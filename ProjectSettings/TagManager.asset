@@ -12,6 +12,9 @@ TagManager:
   - HightPointCollider
   - Default
   - Environment
+  - Score
+  - ScoreCollider
+  - SideWalkCollider
   layers:
   - Default
   - TransparentFX
